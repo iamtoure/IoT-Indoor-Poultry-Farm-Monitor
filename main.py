@@ -27,7 +27,7 @@ dht = SI7006A20(py)
 print("Temperature: " + str(dht.temperature())+ " deg C and Relative Humidity: " + str(dht.humidity()) + " %RH")
 
 
-#L ight Sensor
+#Photoresistor Sensor.  https://github.com/iot-lnu/applied-iot/blob/master/sensor-examples/Photoresistor/main.py
 LightSensorPin = 'P16' # Define sensor pin
 lightPin = Pin(LightSensorPin, mode=Pin.IN)  # set up pin mode to input
 adc = ADC(bits=10)             # create an ADC object bits=10 means range 0-1024 the lower value the less light detected
