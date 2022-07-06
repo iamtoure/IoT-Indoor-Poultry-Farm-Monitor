@@ -1,3 +1,5 @@
+#Source: https://hackmd.io/@lnu-iot/Sk1bej8d9#Part-3-LoRaWAN-on-Helium
+
 from network import LoRa
 import time
 import binascii
