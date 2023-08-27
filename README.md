@@ -40,7 +40,7 @@ The table below shows list of hardware used in the project, specification and pr
 | Hardware                                                                                                           | Specifications                                                                                                                                | Price (SEK) |
 | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | [FiPy and sensors bundle](https://www.electrokit.com/en/product/lnu-1dt305-tillampad-iot-fipy-and-sensors-bundle/) | FiPy Development Board, Pysense 2.0 X Expansion Board, Breadboard, Antenna, Photoresistor Sensor, Resistor 10 kohm, Micro USB Data Cable, Jumper Wires | 1499.00     |
-| [3 x AAA Battery holder](https://www.electrokit.com/en/product/battery-holder-3xaaa-with-switch-and-jst-connector/)|    Battery holder 3xAAA with switch and JST-connector|29.00  
+| [3 x AAA Battery holder](https://www.electrokit.com/en/product/battery-holder-3xaaa-with-switch-and-jst-connector/)|    Battery holder 3xAAA with switch and JST-connector|    29.00  
 
 
 | Hardware(Datasheet)                                                                       | Function                                                                                                                                        |
@@ -175,26 +175,26 @@ Disconnect device from the computer before proceeding with the next steps
 **Check the connections if they are as in the schema as many times as possible before connecting USB cable. Cannot be overcautious here**
 :::
 ### Main Power Connections
-* 5V from expansion board to the breadboard (indicated with red wire in the schematics)
-* Ground (GND) from the expansion board to the GND pin of the FiPy connected on the breadboard (black wire in the schematics)
-* 3.3V from the expansion board to the 3V3 pin of the FiPy connected on the breadboard (Blue wire in the schematics)
+* 5V from expansion board to the breadboard (indicated with red wire in the schematics).
+* Ground (GND) from the expansion board to the GND pin of the FiPy connected on the breadboard (black wire in the schematics).
+* 3.3V from the expansion board to the 3V3 pin of the FiPy connected on the breadboard (Blue wire in the schematics).
 
 ### Data Connection
-* Connect **Universal Asynchronous Receiver/Transmitter - UART** between the PySense 2.0 X and FiPy. Orange and Yellow wires between FiPy and PySense 2.0 X 
-* Connect SCL and SDA pins between the FiPy and PySense 2.0 X as shown with White and Green wires respectively in the image above
+* Connect **Universal Asynchronous Receiver/Transmitter - UART** between the PySense 2.0 X and FiPy. Orange and Yellow wires from the FiPy to the PySense 2.0 X. 
+* Connect SCL and SDA pins between the FiPy and PySense 2.0 X as shown with White and Green wires respectively in the image above.
 
 ### Sensor/Resistor Connections
 The sensors are connected according to the schematics above. The setup allows for using built-in sensors as well as extral sensors.
 #### Photoresistor
 
 * The photoresistor is connected directly on the breadboard
-* Blue wire is drawn from one of the pins of the photoresistor to provide the 3.3V power requirement of the photoresistor
-* Black wire from the other pin of the photoresistor to the GND pin on the FiPy on the breadboard
-* A 10 kohm resistor is connected to the other pin of the photoresistor along the breadboard leaving some pins available between the photoresistor pin and the 10 kohm resistor
-* Yellow wire drawn from one of the reserved pins between the photoresistor and the 10 kohm resistor for data transmission to Pin 16 of FiPy on the breadboard. 
+* Blue wire is drawn from one of the pins of the photoresistor to provide the required 3.3V power of the photoresistor.
+* Black wire from the second pin of the photoresistor is connected to the GND pin of the FiPy on the breadboard.
+* A 10 kohm resistor is connected adjacent to the second pin of the photoresistor along the breadboard reserving available pins between the photoresistor and the 10 kohm resistor.
+* Yellow wire drawn from  a reserved pin between the photoresistor and the 10 kohm resistor for data transmission to Pin 16 (as selected in the code) of FiPy on the breadboard. 
 
 :::warning
-Connect the pins exactly as connected in the schematics above. refer to FiPy and PySense datasheets if unsure
+Connect the pins exactly as connected in the schematics above. refer to datasheets if unsure
 :::
 
 
@@ -215,7 +215,9 @@ Connect the pins exactly as connected in the schematics above. refer to FiPy and
 * For this project, the device reads once every 5 minutes lasting ~15seconds. Therefore in a every one hour, the device will be powered on 450 seconds and sleeps 3150 seconds. 
 
 #### Electrical Calculations of Device
-The dissipitated power of the device is the sum of the power draw of all sensors while sensing, microcontroller power(while active and in standby modes), power for transmitting to gateway,  `[(sensors) + device] * In/active time/hour  = hourly current draw for device to use all sensors`. 
+The dissipitated power of the device is the sum of the power draw of all sensors while sensing, microcontroller power(while active and in standby modes) and power for transmitting to gateway
+
+`[(sensors) + device] * In/active time/hour  = hourly current draw for device to use all sensors`. 
 * #####  Transmitting over LoRA
 `((0.5mA + 7mA + 28mA) * 450 seconds = 35.5mA * 0.125h = ~4.44mAh`
 * ##### While idle/standby
@@ -233,7 +235,7 @@ NB: An increased time between readings will reduce current draw hence prolong th
 
 ## Platform
 ### Datacake
-For this project, [Pybytes](https://sso.pycom.io/login/?client_id=pycom&redirect_uri=https%3A%2F%2Fpyauth.pybytes.pycom.io%2Fauth_code%2Fcallback&scope=profile&response_type=code&state=pybytes-browser) and [Datacake](https://datacake.co) were tested. Like Pybytes, Datacake is a low-code platform that requires little to no programming skill. Datacake was chosen over the former as it has an enhanced dashboards that can be selected just by clicking. Also, it has the ability to set rules at predetermined thresholds. Above all, is the time required to create applications is quite minimal. It is as functional as easy to use. Even though other self-hosted platforms like TIG-Stack, [Node-RED](https://nodered.org) provide advanced and more improved dashboards and much control over data, the code requirement is higher at the moment but going forward, they are better options than Datacake as used in this project for upscaling or enhancement of this project.
+For this project, [Pybytes](https://sso.pycom.io/login/?client_id=pycom&redirect_uri=https%3A%2F%2Fpyauth.pybytes.pycom.io%2Fauth_code%2Fcallback&scope=profile&response_type=code&state=pybytes-browser) and [Datacake](https://datacake.co) were tested. Like Pybytes, Datacake is a low-code platform that requires little to no programming skill. Datacake was chosen over the former as it has enhanced dashboards and easy dashboard configuration. Also, it has the ability to set rules at predetermined thresholds. Above all, less time is required to create applications. It is as functional as easy to use. Even though other self-hosted platforms like TIG-Stack, [Node-RED](https://nodered.org) provide advanced and more improved dashboards and much control over data, the coding level required is higher and due to time constraints, these platforms are not suitable for this project. However, they offer better options than Datacake which can be used to upscale or enhance this project.
 
 ## The Code
 
@@ -291,7 +293,7 @@ To transmit the data, Datacake needs to be integrated to Helium and create a con
 * Tutorials on adding device to Helium [here](https://docs.helium.com/use-the-network/console/adding-devices)
 * [Here](h[ttps://docs.helium.com/use-the-network/console/adding-devices](https://docs.helium.com/use-the-network/console/integrations/datacake/)) are tutorials to integrate Datacake to Helium
 * Final step to create a connection is to add a Flow. More information can be found on [Helium](https://docs.helium.com/use-the-network/console/flows/)
-* After creating a flow, two configurations will be updated. 
+* After creating a flow, follow these steps to update these settings; 
     * Click on device name
     * Navigate to `Configuration`
     * Scroll to `Payload Decoder` and paste this [code](https://github.com/iamtoure/IoT-Indoor-Poultry-Farm-Monitor/blob/6549805b2f294423b02d2a2c23b221ad6fbfe0cf/Payload%20Decoder) in. It will save automatically
@@ -355,18 +357,18 @@ Some selected images for the finalized design of the device
 
 #### Project Specific
 
-The initial project was to measure much more parameters, however, after procuring a sensor, it brought about a lot of challenges which time did not permit to overcome before the deadline. With that said, it does not stop there but continue to probe further and discuss with others who might have faced similar problems and solve it. 
-
-
-Even though the project has been streamlined to focus on poultry farms, the same idea can be implemented in other areas that require similar parameters to be measured.
+The initial project was to measure much more parameters, however, after procuring a sensor, it brought about a lot of challenges which time did not permit to overcome before the deadline. With that said, it does not stop there but continue to probe further and discuss with other IoT experts and enthusiasts to troubleshoot and find a solution and/or work around the problem. 
 
 Insights from the data collected can be used in diverse ways especially machine learning algorithms to detect health of birds and other useful information on the birds.
+
+Although the project has been streamlined to focus on poultry farms, it can be implemented and adjusted to different areas that require similar parameters to be measured.
+
 
 #### General Reflection
 
 The purpose for joining this course has been met which is to learn while having fun 🤩. Like every learning journey, it has had its highs and lows. Like a space shuttle, it starts from a low point to reach the space and sometimes do not lift off at all until after several tries. But when it finally does and reaches its destination, the data obtained is worth the struggle. What I have learned in this course will go a long way to help in shaping my career objective.
 
-Joining this course has exposed me to different knowledge sharing platforms on IoT and other areas which I have not known existed before. The knowledge sharing open platforms have provided a different perspective to the world to me.  
+Joining this course has exposed me to different knowledge sharing platforms on IoT and other areas which I have not known existed before. The knowledge sharing open platforms have provided a different perspective of the world to me.  
 
 ###### YouTube Video Links:
 ###### https://youtu.be/C4Mk48ZZExs
